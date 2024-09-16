@@ -24,16 +24,8 @@ self.__precacheManifest = [
     "revision": "87eecf4de281eb63d23398b95d11af80"
   },
   {
-    "url": "scripts/main.js",
+    "url": "js/script.js",
     "revision": "11590f3687a8296098e0980d744383f1"
-  },
-  {
-    "url": "scripts/utils.js",
-    "revision": "48b063f26eaf52a32f18929ff84978e7"
-  },
-  {
-    "url": "data/helloworld.json",
-    "revision": "18e2041efb50449379decffb0eac60ee"
   },
   {
     "url": "styles/main.css",
