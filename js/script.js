@@ -5,7 +5,7 @@ let countries = await ReadAllCountries();
 console.log(countries);
 const countryList = document.querySelector("#country-list");
 countries.forEach(elem => {
-    html += `<h3>${elem["translations"]["fra"]["official"]}</h3><img src=\"${elem["flags"]["png"]}\" alt="${elem["name"]["common"]}">
+    html += `<div class="flagRow" id="${elem["flag"]}"><h3>${elem["translations"]["fra"]["official"]}</h3><img src=\"${elem["flags"]["png"]}\" alt="${elem["name"]["common"]}"></div>
     <hr>`
 });
 countryList.innerHTML = html;
