@@ -20,7 +20,7 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.0.1/workbox
  */
 self.__precacheManifest = [
   {
-    "url": "flags/index.html",
+    "url": "index.html",
     "revision": "87eecf4de281eb63d23398b95d11af80"
   },
   {
