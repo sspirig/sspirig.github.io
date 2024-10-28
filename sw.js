@@ -20,27 +20,27 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.0.1/workbox
  */
 self.__precacheManifest = [
   {
-    "url": "index.html",
+    "url": "flags/index.html",
     "revision": "87eecf4de281eb63d23398b95d11af80"
   },
   {
-    "url": "js/script.js",
+    "url": "flags/js/script.js",
     "revision": "11590f3687a8296098e0980d744383f1"
   },
   {
-    "url": "styles/main.css",
+    "url": "flags/styles/main.css",
     "revision": "40a40e6967633a53e5c095675109aaeb"
   },
   {
-    "url": "styles/normalize.css",
+    "url": "flags/styles/normalize.css",
     "revision": "51e4e5bb1475d193fc34b28e93929bb6"
   },
   {
-    "url": "images/icons/ic_info_outline_black_24px.svg",
+    "url": "flags/images/icons/ic_info_outline_black_24px.svg",
     "revision": "3b1d479abe000b3ee42b1e12ff4e6003"
   },
   {
-    "url": "images/icons/ic_refresh_black_24px.svg",
+    "url": "flags/images/icons/ic_refresh_black_24px.svg",
     "revision": "24cd311a529af88ad5879723732d7f30"
   }
 ].concat(self.__precacheManifest || []);
