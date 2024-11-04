@@ -11,14 +11,16 @@ html, body, #map {
 }
 </style>
 <main>
+    <h1>GE-ocaching</h1>
+    <strong>Les caches du grand genevois</strong>
     <div id='map'></div>
 </main>
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
 <script>
-    var map = L.map('map').setView([51.505, -0.09], 13);
+    var map = L.map('map').setView([46.204391, 6.143158], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
 
-    const marker1 = L.marker([-37.699450, 176.279420]).addTo(map);
+    const marker1 = L.marker([46.504391, 6.143158]).addTo(map);
 
 </script>
