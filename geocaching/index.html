@@ -1,32 +1,24 @@
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
-    <style>
-        body {
-        padding: 0;
-        margin: 0;
-    }
-    html, body, #map {
-        height: 100%;
-        width: 100vw;
-    }
-    </style>
-    <main>
-        <header>
-            <h2>Bienvenue sur GE-ocaching</h2>
-            <strong>Les caches du Grand Genevois</strong>
-        </header>
-        <!-- <video id="cameraBox" autoplay></video>
-        <canvas id="canvas"></canvas> -->
-        <section>
-            <div id='map'></div>
-        </section>
-    </main>
-        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
-        <script>
-            var map = L.map('map').setView([51.505, -0.09], 13);
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+<style>
+    body {
+    padding: 0;
+    margin: 0;
+}
+html, body, #map {
+    height: 100%;
+    width: 100vw;
+}
+</style>
+<main>
+    <div id='map'></div>
+</main>
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+<script>
+    var map = L.map('map').setView([51.505, -0.09], 13);
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
 
-            const marker1 = L.marker([-37.699450, 176.279420]).addTo(map);
+    const marker1 = L.marker([-37.699450, 176.279420]).addTo(map);
 
-        </script>
+</script>
