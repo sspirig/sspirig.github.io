@@ -1,44 +1,47 @@
-
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
-<style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <style>
+        body {
+        padding: 0;
+        margin: 0;
+    }
+    html, body, #map {
+        height: 100%;
+        width: 100vw;
+    }
+    img {
+        position: absolute;
+        max-width: 32px;
+        max-height: 32px;
+    }
+    #camSpace {
+        display: none;
+    }
+    
     body {
-    padding: 0;
-    margin: 0;
-}
-html, body, #map {
-    height: 100%;
-    width: 100vw;
-}
-img {
-    position: absolute;
-    max-width: 32px;
-    max-height: 32px;
-}
-#camSpace {
-    display: none;
-}
-
-main {
-    display: flex;
-    justify-content: center;
-}
-</style>
-<main>
+        display: flex;
+        justify-content: center;
+    }
+    </style>
+</head>
+<body>
     <h1>GE-ocaching</h1>
     <strong>Les caches du grand genevois</strong>
-    <div id='map'>
-        
-    </div>
     <img src="./cam.png" id="cam" alt="camera">
-    <div id="camSpace">
-        <button style="height: 5vh;" id="btnShoot">Capturer</button>
-        <button style="height: 5vh;" id="btnChange">Changer</button>
-        <video id="cameraBox" autoplay></video>
+    <div id="map"></div>
+    <div id="camSpace"></div>
+        <video id="cameraBox" autoplay playsinline></video>
+        <button style="height: 4vh;" id="btnShoot">Capturer</button>
+        <button style="height: 4vh;" id="btnChange">Changer</button>
         <canvas id="canvas"></canvas>
     </div>
-
-
-</main>
+    <script src="camera.js"></script>
+</body>
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
 <script type="module">
     ///////////// PARTIE MAP
