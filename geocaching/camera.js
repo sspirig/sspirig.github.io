@@ -39,5 +39,5 @@
         print(canvas.getDataURL());
     });
     btnChangeCamera.addEventListener("click", () => {
-        constraints.facingMode.exact = "selfie";
+        constraints.video.facingMode.exact = "selfie";
     });
