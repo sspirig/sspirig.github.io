@@ -17,13 +17,15 @@ img {
 #camSpace {
     display: none;
 }
+
+main {
+    display: flex;
+    justify-content: center;
+}
 </style>
 <main>
     <h1>GE-ocaching</h1>
     <strong>Les caches du grand genevois</strong>
-    <div id='map'>
-        
-    </div>
     <img src="./cam.png" id="cam" alt="camera">
     <div id="camSpace">
         <button style="height: 5vh;" id="btnShoot">Capturer</button>
@@ -31,6 +33,10 @@ img {
         <video id="cameraBox" autoplay></video>
         <canvas id="canvas"></canvas>
     </div>
+    <div id='map'>
+        
+    </div>
+
 </main>
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
 <script type="module">
@@ -39,7 +45,7 @@ img {
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
 
-    const marker1 = L.marker([46.504391, 6.143158]).addTo(map);
+    const marker1 = L.marker([46.201311, 6.143000]).addTo(map);
 
     ///////////// PARTIE CAMERA
     let stream = await navigator.mediaDevices.getUserMedia({video: true});
@@ -66,7 +72,7 @@ img {
         
         if (!isCamOpened) {
             isCamOpened = true;
-            camSpace.style.display = "block";
+            camSpace.style.display = "flex";
             cameraBox.srcObject = stream;
         }
         else {
