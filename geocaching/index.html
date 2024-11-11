@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <style>
@@ -19,14 +18,28 @@
     img {
         max-width: 64px;
         max-height: 64px;
+        padding: 0.5rem;
+    }
+    #camTools {
+        display: flex;
+        justify-content: center;
+        margin: 0.5rem;
     }
     #camSpace {
         display: none;
+        justify-content: center;
     }
-    
+    #mapTools{
+        display: flex; 
+        justify-content: center;
+    }
+    #camBtn {
+        
+        height: 8vh;
+        width: 50vw;
+    }
     body {
         display: flex;
-        justify-content: center;
         flex-direction: column;
     }
     </style>
@@ -37,18 +50,23 @@
     <h1>GE-ocaching</h1>
     <strong>Les caches du grand genevois</strong>
 
-    
     <div id="map"></div>
 
     <div id="camSpace">
         <video id="cameraBox" autoplay playsinline></video>
-        <button style="height: 4vh;" id="btnShoot">Capturer</button>
-        <button style="height: 4vh;" id="btnChange">Changer</button>
         <canvas id="canvas"></canvas>
+        
     </div>
-    <img src="./cam.png" id="cam" alt="camera">
+    <div id="mapTools" >
+        <button id="changeMapMode" class="toViewMode">Mode Vue</button>
+    </div>
+    <div id="camTools">
+        <img src="./img/changeCamera.png" style="display:none; height: 10vh;" id="btnChange">
+        <img src="./img/cam.png" style="display: none; height: 10vh;" id="btnShoot" alt="shootPhoto">
+        <img src="./img/cam.png" style=" height: 10vh;" id="camBtn" alt="openPhoto">
+        
+    </div>
 </body>
 
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
-<script src="js/main.js"></script>
-<script type="module" src="camera.js"></script>
+<script type="module" src="js/main.js"></script>
