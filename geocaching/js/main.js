@@ -1,14 +1,20 @@
 ///////////// PARTIE MAP
+
 var map = L.map('map').setView([46.204391, 6.143158], 13);
 let isViewing = true;
 let changeMapMode = document.querySelector("#changeMapMode");
-
+var markerActive = null;
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
 
-const marker1 = L.marker([46.201311, 6.143000]).addTo(map);
-marker1.bindPopup("<img id=\"imageObtained\"> src=\"\"");
+const ICON_HIGHLIGHTED = L.icon({
+    iconUrl: "../img/marker-icon-2x-red.png"
+});
 
-function CreateMarker(e) {
+
+const marker1 = L.marker([46.201311, 6.143000]).addTo(map);
+marker1.bindPopup("<div class=\"markerDisplay\"><img id=\"imageObtained\" src=\"img/tempImage.jpg\"><h4>Capturé le dd/mm/aaaa</h4></div>");
+
+function CreateMarker(e, src) {
 
     var lat,
         lon,
@@ -19,40 +25,74 @@ function CreateMarker(e) {
     zoom = map.getZoom();
 
     let newMarker = new L.Marker(new L.LatLng(lat, lon));
-    newMarker.bindPopup("<img id=\"imageObtained\"> src=\"\"");
+    newMarker.bindPopup("<img id=\"imageObtained\"> src=\""+src+"\"");
     map.addLayer(newMarker);
 }
 
 function eventManager(e) {
     console.log(e.target);
-    
-    if (!isViewing)
-    {
-        SwitchToModeCam(e)
-        if (isImageCreated)
-        {
 
-        }
-        CreateMarker(e);
-    }
+    console.log("onMapClick");
+    
+
+    resetActiveMarker();
+
+    markerActive = L.marker(e.latlng).addTo(map);
+    markerActive.setIcon(ICON_HIGHLIGHTED);
+    // markerActive.addEventListener("click", onMapClickWithMarker);
+
+
     
 }
 
+function resetActiveMarker() {
+    // cas: un marqueur est déjà actif et on clique à un autre endroit
+    if (markerActive != null) {
+        // s'il est déjà associé à une image, on se contente de mettre l'icône par défaut et de cacher l'image
+        if (JSON.stringify(markerActive.getLatLng()) in localStorage) {
+            markerActive.setIcon(ICON_DEFAULT);
+            myCanvas.style.display = "none";
+        }
+        // s'il n'existe pas encore d'image associée à ce marqueur, on le supprime
+        else {
+            map.removeLayer(markerActive);
+        }
+    }
 
-map.on('click', eventManager);
+}
 
-changeMapMode.addEventListener("click", event =>{
+function changeMode(event){
     if (event.target.className == "toView"){
         isViewing = true;
         event.target.className = "toCreate";
-        event.target.innerHTML = "Mode Créer";
+
+        isCamOpened = true;
+        camSpace.style.display = "flex";
+        btnChangeCamera.style.display = "flex";
+        btnShoot.style.display = "flex";
+        cameraBox.srcObject = stream;
+
+        modeText.innerHTML = "Appareil photo";
     }
     else {
+        // close cam
+        isCamOpened = false;
+        camSpace.style.display = "none";
+        btnChangeCamera.style.display = "none";
+        btnShoot.style.display = "none";
+        
+        
+        cameraBox.srcObject = null;
+        /////
         isViewing = false;
         event.target.className = "toView";
-        event.target.innerHTML = "Mode Vue";
+        modeText.innerHTML = "Carte";
     }
-});
+}
+
+map.on('click', eventManager);
+
+changeMapMode.addEventListener("click", changeMode);
 
 ///////////// PARTIE CAMERA
 let stream = await navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}});
@@ -63,10 +103,9 @@ let isCamOpened = false;
 let cameraBox = document.querySelector("#cameraBox");
 let camTools = document.querySelector("#camTools");
 let canvas = document.querySelector("#canvas");
-let btnOpenCamera = document.querySelector("#camBtn");
 let btnTakePicture = document.querySelector("#btnShoot");
 let btnChangeCamera  = document.querySelector("#btnChange");
-
+let modeText = document.querySelector("#modeText");
 let camSpace = document.querySelector("#camSpace");
 let imageObtained = document.querySelector("#image");
 let facing = "environment";
@@ -93,7 +132,7 @@ let constraints = {
 
 
 btnChangeCamera.addEventListener("click", SwitchToModeCam);
-function SwitchToModeCam(e)
+async function SwitchToModeCam(e)
 {
     
     // console.log("avant: ", track.getConstraints());
@@ -101,48 +140,41 @@ function SwitchToModeCam(e)
     // //track = switchCameras(track, "back");
     
     if (!isCamOpened) {
-        isCamOpened = true;
-        
-        camSpace.style.display = "flex";
-        btnChangeCamera.style.display = "flex";
-        btnShoot.style.display = "flex";
-        btnOpenCamera.style.height = "8vh";
-        btnOpenCamera.src = "./img/close.png";
-        cameraBox.srcObject = stream;
+
+    }
+
+}
+
+btnTakePicture.addEventListener("click", async () => {
+    TakePicture()
+});
+btnChangeCamera.addEventListener("click", async () => {
+    stream.getTracks().forEach(track => {
+        track.stop();
+    });
+    if (facing == "environment"){
+        facing = "selfie";
     }
     else {
-        isCamOpened = false;
-        camSpace.style.display = "none";
-        btnChangeCamera.style.display = "none";
-        btnShoot.style.display = "none";
-        
-        btnOpenCamera.src = "./img/cam.png";
-        btnOpenCamera.style.height = "10vh";
-        cameraBox.srcObject = null;
+        facing = "environment";
     }
-    btnTakePicture.addEventListener("click", () => {
-        canvas.width = cameraBox.videoWidth;
-        canvas.height = cameraBox.videoHeight;
-        canvas.getContext("2d").drawImage(cameraBox, 0, 0);
-        let imgDataURL = canvas.getDataURL("img/jpg");
-        localStorage.setItem("imgData", imgDataURL)
-        imageObtained.src = imgDataURL;
-    });
-    btnChangeCamera.addEventListener("click", () => {
-        stream.getTracks().forEach(track => {
-            track.stop();
-        });
-        if (facing == "environment"){
-            facing = "selfie";
-        }
-        else {
-            facing = "environment";
-        }
-        SwitchCamera(facing);
-    });
-}
+    SwitchCamera(facing);
+});
 
 async function SwitchCamera(facing){
     stream = await navigator.mediaDevices.getUserMedia({video: {facingMode: facing}});
     cameraBox.srcObject = stream;
+}
+
+
+function TakePicture() {
+    canvas.width = cameraBox.videoWidth;
+    canvas.height = cameraBox.videoHeight;
+    canvas.getContext("2d").drawImage(cameraBox, 0, 0);
+    let imgDataURL = canvas.toDataURL("img/").replace("image/", "img/octet-stream");;
+    localStorage.setItem("imgData", imgDataURL)
+    imageObtained.src = imgDataURL;
+    window.location.href= imgDataURL;
+    imageObtained = true;
+    return imgDataURL;
 }
