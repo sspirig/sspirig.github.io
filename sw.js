@@ -42,6 +42,22 @@ self.__precacheManifest = [
   {
     "url": "flags/images/icons/ic_refresh_black_24px.svg",
     "revision": "24cd311a529af88ad5879723732d7f30"
+  },
+  {
+    "url": "Examen_M335/index.html",
+    "revision": "87eecf4de281eb63d23398b95d11af80"
+  },
+  {
+    "url": "Examen_M335/js/script.js",
+    "revision": "11590f3687a8296098e0980d744383f1"
+  },
+  {
+    "url": "Examen_M335/styles.css",
+    "revision": "40a40e6967633a53e5c095675109aaeb"
+  },
+  {
+    "url": "Examen_M335/car.php",
+    "revision": "51e4e5bb1475d193fc34b28e93929bb6"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
