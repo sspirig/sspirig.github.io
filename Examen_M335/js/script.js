@@ -8,7 +8,7 @@
 
 const main = document.querySelector("main");
 const carsList = main.querySelector("#carsList");
-let apiURL = "/car.php";
+let apiURL = "/Examen_M335/car.php";
 let htmlToInsert = "";
 let cars = await SelectAllCars();
 console.log(cars);
